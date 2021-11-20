@@ -32,3 +32,11 @@ pip install -r requirements.txt
 ## Testing
 
 `python -m pytest -vv |tee test.log`
+
+### Endpoint
+
+`https://covid-backend-modelling.herokuapp.com/`
+
+#### Debugging
+
+`heroku logs --tail -a covid-backend-modelling`

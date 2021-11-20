@@ -1,4 +1,3 @@
-import numpy as np
 from flask import Flask, request, jsonify, render_template
 import json
 from model import Model
@@ -50,7 +49,3 @@ def predict():
 #     output = round(prediction[0], 2)
 
 #     return render_template('index.html', prediction_text='STI should be $ {}'.format(output))
-
-
-if __name__ == "__main__":
-    app.run(debug=True)
