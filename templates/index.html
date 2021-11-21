@@ -2,7 +2,7 @@
 <html >
 <head>
   <meta charset="UTF-8">
-  <title>Deployment Tutorial 1</title>
+  <title>2D Project Bonus</title>
   <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
 <link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
 <link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
@@ -16,13 +16,13 @@
 	<h1>Predict Straits Times Index using COVID Data</h1>
 
      <!-- Main Input For Receiving Query to our ML -->
-    <form action="{{ url_for('predict')}}"method="post">
-    	<input type="text" name="rate" placeholder="rate" required="required" />
-        <input type="text" name="sales in first month" placeholder="sales in first month" required="required" />
-		<input type="text" name="sales in second month" placeholder="sales in second month" required="required" />
+    <form action="{{ url_for('view')}}"method="post">
+    	<input type="text" name="Date" placeholder="Date" required="required" />
+        <input type="text" name=" percentage vaccinated" placeholder=" percentage vaccinated" required="required" />
+		<input type="text" name="7 Day Moving Average" placeholder="7 Day Moving Average" required="required" />
 
 
-        <button type="submit" class="btn btn-primary btn-block btn-large">Predict sales in third month</button>
+        <button type="submit" class="btn btn-primary btn-block btn-large">Predict STI</button>
     </form>
 
    <br>

@@ -1,5 +1,6 @@
 from flask import Flask, request, jsonify, render_template
 import json
+import numpy as np
 from model import Model
 
 
@@ -39,13 +40,13 @@ def predict():
         return jsonify(prediction)
 
 
-# @ app.route('/view', methods=['POST', 'GET'])
-# def view():
+@ app.route('/view', methods=['POST', 'GET'])
+def view():
 
-#     int_features = [int(x) for x in request.form.values()]
-#     final_features = [np.array(int_features)]
-#     prediction = model.predict(final_features)
+    int_features = [int(x) for x in request.form.values()]
+    final_features = [np.array(int_features)]
+    prediction = model.predict(final_features)
 
-#     output = round(prediction[0], 2)
+    output = round(prediction[0], 2)
 
-#     return render_template('index.html', prediction_text='STI should be $ {}'.format(output))
+    return render_template('index.html', prediction_text='STI should be $ {}'.format(output))
