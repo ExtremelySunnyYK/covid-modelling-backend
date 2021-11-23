@@ -46,3 +46,5 @@ https://covid-backend-modelling.herokuapp.com/?data=[[-0.16797556263689653,%200.
 #### Debugging
 
 `heroku logs --tail -a covid-backend-modelling`
+
+`export FLASK_ENV=development`
