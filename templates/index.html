@@ -1,36 +1,28 @@
 <!DOCTYPE html>
-<html >
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>2D Project Bonus</title>
-  <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
-<link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
-<link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
-<link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
-<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-  
+    <meta charset="UTF-8">
+    <title>2D Project Bonus</title>
+    <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
-
-<body style="background: #000;">
- <div class="login">
-	<h1>Predict Straits Times Index using COVID Data</h1>
-
-     <!-- Main Input For Receiving Query to our ML -->
-    <form action="{{ url_for('view')}}"method="post">
-    	<input type="text" name="Date" placeholder="Date in dd/mm/yyy" required="required" />
-        <input type="text" name=" percentage vaccinated" placeholder=" percentage vaccinated" required="required" />
-		<input type="text" name="7 Day Moving Average" placeholder="7 Day Moving Average" required="required" />
-
-
-        <button type="submit" class="btn btn-primary btn-block btn-large">Predict STI</button>
-    </form>
-
-   <br>
-   <br>
-   {{ prediction_text }}
-
- </div>
-
-
+<body>
+    <div class="home">
+        <div class="heading">
+            <h1>Predicting Singapore's economy amidst COVID-19 using the Straits Times Index (STI)</h1>
+            <h3>Cohort 1 Group 7</h3>
+        </div>
+        <div>
+            <!-- <form action="{{ url_for('view')}}" method="post">
+                <button type="button" class="submit">Data Visualisation</button>
+                <button type="button" class="submit">Predict STI Price</button>
+            </form> -->
+            <button type="button" class="button" onclick="#">Data Visualisation</button>
+            <button type="button" class="button" onclick="predict.html">Predict STI Price</button>
+        </div>
+    </div>
 </body>
 </html>
