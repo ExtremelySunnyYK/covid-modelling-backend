@@ -1,4 +1,6 @@
 from flask import Flask, request, jsonify, render_template
+from flask_bootstrap import Bootstrap
+
 import json
 import numpy as np
 from model import Model
@@ -9,6 +11,7 @@ import datetime as dt
 
 def create_app():
     app = Flask(__name__)
+    Bootstrap(app)
 
     return app
 
@@ -39,7 +42,8 @@ def predict():
     # convert datetime to ordinal
     form_values[0] = dt.datetime.toordinal(date)
 
-    int_features = [int(x) for x in form_values]
+    int_features = [float(x) for x in form_values]
+    print(int_features)
 
     final_features = [np.array(int_features)]
     prediction = model.predict(final_features)

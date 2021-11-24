@@ -16,14 +16,8 @@
             <h3>Cohort 1 Group 7</h3>
         </div>
         <div>
-            <form action="{{ url_for('view') }}">
-                <button type="button" class="button">Data Visualisation</button>
-            </form>
-
-
-            <form action="{{ url_for('view') }}">
-                <button type="submit" class="button" >Predict STI Price</button>
-            </form>
+            <button type="submit" class="button"><a href="{{ url_for('index') }}" target="_blank">Data Visualisation</a></button>
+            <button type="submit" class="button"><a href="{{ url_for('view') }}" target="_blank">Predict STI Price</a></button>
             
         </div>
     </div>

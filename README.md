@@ -27,7 +27,9 @@ pip install -r requirements.txt
 
 ## Run
 
-`python app.py`
+`export FLASK_APP=app.py`
+`export FLASK_ENV=development`
+`python wsgi.py` or `flask run`
 
 ## Testing
 
