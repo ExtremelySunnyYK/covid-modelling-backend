@@ -3,6 +3,11 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 from typing import List
+import logging
+
+logger = logging.getLogger('werkzeug')  # grabs underlying WSGI logger
+handler = logging.FileHandler('record.log')  # creates handler for the log file
+logger.addHandler(handler)  # adds handler to the werkzeug WSGI logger
 
 
 class Model:
@@ -17,7 +22,7 @@ class Model:
                  [128.51500931],
                     [-21.74180792],
                     [-120.29047432]]),
-            5: np.array(
+            6: np.array(
                 [[3.11481098e+03],
                  [2.26040217e+00],
                     [-1.95620273e+00],
@@ -36,12 +41,15 @@ class Model:
         }
 
     def predict(self, df_features_test_list):
-        df_feature = np.array(df_features_test_list)
-        num_features = df_feature.shape[1]
-        beta = self.model_collection[num_features+1]  # accounting for beta 0
+        df = pd.read_csv('./data/df_feature1.csv')
+        df.loc[df.shape[0], :] = df_features_test_list
+        df_z = self.normalize_z(df)
+        line = df_z.tail(1)
 
-        df_feature = self.normalize_z(df_feature)
-        X = self.prepare_feature(df_feature)
+        beta = self.model_collection[6]  # accounting for beta 0
+
+        X = self.prepare_feature(line)
+        logger.info("X : ", X)
 
         return self.predict_norm(X, beta)
 

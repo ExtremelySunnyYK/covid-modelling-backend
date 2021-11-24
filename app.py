@@ -1,5 +1,7 @@
+
 from flask import Flask, request, jsonify, render_template
 from flask_bootstrap import Bootstrap
+
 
 import json
 import numpy as np
@@ -18,8 +20,9 @@ def create_app():
 
 app = create_app()
 model = Model()
-# logging.basicConfig(filename='record.log', level=logging.DEBUG,
-#                     format=f'%(asctime)s %(levelname)s %(name)s %(threadName)s : %(message)s')
+logger = logging.getLogger('werkzeug')  # grabs underlying WSGI logger
+handler = logging.FileHandler('record.log')  # creates handler for the log file
+logger.addHandler(handler)  # adds handler to the werkzeug WSGI logger
 
 
 @app.route('/index')
@@ -35,7 +38,10 @@ def view():
 
 @ app.route('/predict', methods=['POST', 'GET'])
 def predict():
+    logger.info('Processing default request')
+
     form_values = [v for v in request.form.values()]
+    logger.error("FEATURES : ", form_values)
     # convert value to datetime
     date = form_values[0]
     date = dt.datetime.strptime(date, '%d/%m/%y')
@@ -43,11 +49,10 @@ def predict():
     form_values[0] = dt.datetime.toordinal(date)
 
     int_features = [float(x) for x in form_values]
-    print(int_features)
+    logger.info("FEATURES : ", int_features)
 
-    final_features = [np.array(int_features)]
-    prediction = model.predict(final_features)
-    app.logger.info('%s prediction success', prediction)
+    prediction = model.predict(int_features)
+    logger.info('%s prediction success', prediction)
 
     output = round(prediction[0, 0], 2)
 
