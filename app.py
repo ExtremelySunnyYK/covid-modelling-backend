@@ -38,25 +38,29 @@ def view():
 
 @ app.route('/predict', methods=['POST', 'GET'])
 def predict():
-    logger.info('Processing default request')
+    try:
+        logger.info('Processing default request')
 
-    form_values = [v for v in request.form.values()]
-    logger.error("FEATURES : ", form_values)
-    # convert value to datetime
-    date = form_values[0]
-    date = dt.datetime.strptime(date, '%d/%m/%y')
-    # convert datetime to ordinal
-    form_values[0] = dt.datetime.toordinal(date)
+        form_values = [v for v in request.form.values()]
+        logger.error("FEATURES : ", form_values)
+        # convert value to datetime
+        date = form_values[0]
+        date = dt.datetime.strptime(date, '%d/%m/%y')
+        # convert datetime to ordinal
+        form_values[0] = dt.datetime.toordinal(date)
 
-    int_features = [float(x) for x in form_values]
-    logger.info("FEATURES : ", int_features)
+        int_features = [float(x) for x in form_values]
+        logger.info("FEATURES : ", int_features)
 
-    prediction = model.predict(int_features)
-    logger.info('%s prediction success', prediction)
+        prediction = model.predict(int_features)
+        logger.info('%s prediction success', prediction)
 
-    output = round(prediction[0, 0], 2)
+        output = round(prediction[0, 0], 2)
 
-    return render_template('predict.html', prediction_text='STI should be $ {}'.format(output))
+        return render_template('predict.html', prediction_text='STI should be $ {}'.format(output))
+
+    except:
+        return render_template('predict.html', prediction_text='The model failed to predict. Please put a valid input and try again.')
 
 
 @ app.route('/predict_endpoint', methods=['POST', 'GET'])

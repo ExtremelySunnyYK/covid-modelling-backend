@@ -23,11 +23,11 @@
 
      <!-- Main Input For Receiving Query to our ML -->
     <form action="{{ url_for('predict')}}" method="post">
-    	<input type="text" name="Date" placeholder="Date in dd/mm/yyy" required="required" />
-      <input type="text" name="Still Hospitalised" placeholder="Number of People Still Hospitalised" required="required" />
-      <input type="text" name="7 Day Moving Average" placeholder="Number of Covid Cases. E.g " required="required" />
-      <input type="text" name="Percentage Vaccinated" placeholder="Percentage of population vaccinated" required="required" />
-		  <input type="text" name="Passengers" placeholder="Air Traffic Passengers" required="required" />
+    	<input type="text" name="Date" placeholder="Date in dd/mm/yyy e.g 11/12/21" required="required" />
+      <input type="text" name="Still Hospitalised" placeholder="Number of People Still Hospitalised e.g 121" required="required" />
+      <input type="text" name="7 Day Moving Average" placeholder="Number of Covid Cases. E.g 3000 " required="required" />
+      <input type="text" name="Percentage Vaccinated" placeholder="Percentage of population vaccinated (0 to 1) e.g 0.6" required="required" />
+		  <input type="text" name="Passengers" placeholder="Air Traffic Passengers e.g 211" required="required" />
 
       <button type="submit" class="btn btn-primary btn-block btn-large">Predict STI</button>
     </form>
