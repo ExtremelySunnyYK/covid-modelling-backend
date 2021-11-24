@@ -2,6 +2,10 @@
 
 linear regression model from scratch deployed on flask
 
+### URL
+
+`https://covid-backend-modelling.herokuapp.com/`
+
 ## setup
 
 Install python 3.8.5
@@ -34,10 +38,6 @@ pip install -r requirements.txt
 ## Testing
 
 `python -m pytest -vv |tee test.log`
-
-### Endpoint
-
-`https://covid-backend-modelling.herokuapp.com/`
 
 <b>Predictor Endpoint</b>
 

@@ -57,7 +57,7 @@ def predict():
 
         output = round(prediction[0, 0], 2)
 
-        return render_template('predict.html', prediction_text='STI should be $ {}'.format(output))
+        return render_template('predict.html', prediction_text='Predicted STI Price : $ {}'.format(output))
 
     except:
         return render_template('predict.html', prediction_text='The model failed to predict. Please put a valid input and try again.')
