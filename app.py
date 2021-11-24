@@ -19,13 +19,40 @@ model = Model()
 #                     format=f'%(asctime)s %(levelname)s %(name)s %(threadName)s : %(message)s')
 
 
+@app.route('/index')
 @app.route('/')
-def home():
+def index():
     return render_template('index.html')
 
 
-@ app.route('/predict', methods=['GET'])
+@app.route('/view')
+def view():
+    return render_template('predict.html')
+
+
+@ app.route('/predict', methods=['POST', 'GET'])
 def predict():
+    form_values = [v for v in request.form.values()]
+    # convert value to datetime
+    date = form_values[0]
+    date = dt.datetime.strptime(date, '%d/%m/%y')
+    # convert datetime to ordinal
+    form_values[0] = dt.datetime.toordinal(date)
+
+    int_features = [int(x) for x in form_values]
+
+    final_features = [np.array(int_features)]
+    prediction = model.predict(final_features)
+    app.logger.info('%s prediction success', prediction)
+
+    output = round(prediction[0, 0], 2)
+
+    return render_template('predict.html', prediction_text='STI should be $ {}'.format(output))
+
+
+@ app.route('/predict_endpoint', methods=['POST', 'GET'])
+def predict_endpoint():
+    """Creates an api endpoint that allows other web application to communicate with."""
     if request.method == 'GET':
         data = request.args.get('data')
         app.logger.info(data)
@@ -43,26 +70,6 @@ def predict():
         # convert numpy array to list
         prediction = prediction.tolist()
         return jsonify(prediction)
-
-
-@ app.route('/view', methods=['POST', 'GET'])
-def view():
-    form_values = [v for v in request.form.values()]
-    # convert value to datetime
-    date = form_values[0]
-    date = dt.datetime.strptime(date, '%d/%m/%y')
-    # convert datetime to ordinal
-    form_values[0] = dt.datetime.toordinal(date)
-
-    int_features = [int(x) for x in form_values]
-
-    final_features = [np.array(int_features)]
-    prediction = model.predict(final_features)
-    app.logger.info('%s prediction success', prediction)
-
-    output = round(prediction[0, 0], 2)
-
-    return render_template('index.html', prediction_text='STI should be $ {}'.format(output))
 
 
 @app.errorhandler(404)
