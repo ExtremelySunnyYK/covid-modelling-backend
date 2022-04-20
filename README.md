@@ -2,6 +2,8 @@
 
 linear regression model from scratch deployed on flask
 
+Won Best Project for SUTD's Data Driven World Module
+
 ### URL
 
 `https://covid-backend-modelling.herokuapp.com/`
